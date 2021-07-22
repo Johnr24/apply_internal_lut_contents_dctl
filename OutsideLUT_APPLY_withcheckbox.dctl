@@ -1,0 +1,20 @@
+DEFINE_CUBE_LUT(lut_name)
+{
+    THIS_TEXT_SHOULD_BE_REMOVED_AND_THE_CONTENTS_OF_A_LUT_GOES_IN_ITS_PLACE
+}
+
+DEFINE_UI_PARAMS(lutapply1, LUT_1, DCTLUI_CHECK_BOX, 0)
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B)
+{
+     
+    if (lutapply1) 
+    {
+        float r = p_R;
+        float g = p_G;
+        float b = p_B;
+        const float3 reslut1 = APPLY_LUT(r, g, b, lut_name);
+        return reslut1;    
+    }
+
+}
